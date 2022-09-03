@@ -2,7 +2,7 @@
   <div class="container py-3">
     <the-header></the-header>
     <main>
-      <router-view></router-view>
+      <router-view :key="$route.fullPath"></router-view>
     </main>
     <the-footer></the-footer>
   </div>

@@ -3,7 +3,7 @@ export default {
     state(){
         return {
             blogs: [],
-            blogDetails: null,
+            blogDetails: [],
         }
     },
 
@@ -44,7 +44,6 @@ export default {
         },
 
         async loadSingleBlog(context, payload){
-            console.log(payload);
             const resp = await fetch(`http://127.0.0.1:8000/api/blogs/`+payload.id);
             const respData = await resp.json();
 
@@ -61,7 +60,6 @@ export default {
                 details: respData['msg'].details,
                 image: respData['msg'].image,
             }
-            console.log(blog);
             context.commit('setBlogDetails', blog);
         }
     },
