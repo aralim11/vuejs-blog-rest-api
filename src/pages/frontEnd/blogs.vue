@@ -16,9 +16,8 @@
 </template>
 
 <script>
-    import BlogList from './../../components/blogs/blogsList.vue';
+    import BlogList from './../../components/frontEnd/blogs/blogsList.vue';
     
-
     export default {
         components: {
             'blog-list': BlogList,
