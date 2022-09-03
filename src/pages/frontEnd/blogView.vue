@@ -3,7 +3,7 @@
         <div class="col-md-9">
             <article class="blog-post">
                 <h2 class="blog-post-title" >{{ blogDetails.title }}</h2>
-                <p class="blog-post-meta">January 1, 2021 by <a href="#">{{ blogDetails.user_id }}</a> | <a href="#">{{ blogDetails.category_id }}</a></p>
+                <p class="blog-post-meta">January 1, 2021 by <a href="#">{{ blogDetails.user_id }}</a> | <a href="#">{{ blogDetails.category_name }}</a></p>
                 <p>{{ blogDetails.details }}</p>
             </article>
         </div>
@@ -30,7 +30,7 @@
         methods: {
             async loadSingleBlog(blogId){
                 await this.$store.dispatch('Blogs/loadSingleBlog', {id: blogId});
-            }
+            },
         },
 
         computed: {
@@ -39,7 +39,7 @@
             },
 
             simillerCats(){
-                return this.$store.getters['Blogs/blogs'].filter(coach => (coach.category_id == this.blogDetails.category_id) && (coach.id != this.$route.params.id));
+                return this.$store.getters['Blogs/simillerBlogs'];
             }
         },
 
