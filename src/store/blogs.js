@@ -49,6 +49,8 @@ export default {
         },
 
         async loadSingleBlog(context, payload){
+            context.commit('setBlogDetails', []);
+            context.commit('setSimillerBlogs', []);
             const resp = await fetch(`http://127.0.0.1:8000/api/blogs/`+payload.id);
             const respData = await resp.json();
 
@@ -65,6 +67,7 @@ export default {
                 title: respData['msg'].title,
                 details: respData['msg'].details,
                 image: respData['msg'].image,
+                created_at: respData['msg'].created_at,
             }
             await context.dispatch('loadSimillerBlogs', {catId: respData['msg'].category_id, id: respData['msg'].id});
             context.commit('setBlogDetails', blog);

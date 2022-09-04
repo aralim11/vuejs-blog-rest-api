@@ -3,7 +3,7 @@
         <div class="col-md-9">
             <article class="blog-post">
                 <h2 class="blog-post-title" >{{ blogDetails.title }}</h2>
-                <p class="blog-post-meta">January 1, 2021 by <a href="#">{{ blogDetails.user_id }}</a> | <a href="#">{{ blogDetails.category_name }}</a></p>
+                <p class="blog-post-meta">{{ format_date(blogDetails.created_at) }} by <a href="#">{{ blogDetails.user_id }}</a> | <a href="#">{{ blogDetails.category_name }}</a></p>
                 <p>{{ blogDetails.details }}</p>
             </article>
         </div>
@@ -21,6 +21,7 @@
 
 <script>
     import BlogSimillerPost from './../../components/frontEnd/blogs/blogsSimillerCat.vue';
+    import moment from 'moment';
 
     export default {
         components: {
@@ -29,7 +30,14 @@
 
         methods: {
             async loadSingleBlog(blogId){
+                this.$swal.fire('Please Wait. Data Loading.');
+                this.$swal.showLoading();
                 await this.$store.dispatch('Blogs/loadSingleBlog', {id: blogId});
+                this.$swal.close();
+            },
+
+            format_date(date){
+                return moment(date).format('MMMM MM, YYYY');
             },
         },
 
@@ -40,7 +48,7 @@
 
             simillerCats(){
                 return this.$store.getters['Blogs/simillerBlogs'];
-            }
+            },
         },
 
         created(){
