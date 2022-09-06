@@ -1,4 +1,5 @@
 import { createApp } from 'vue';
+import { ContentLoader } from "vue-content-loader";
 import VueSweetalert2 from 'vue-sweetalert2';
 import App from './App.vue';
 import 'bootstrap';
@@ -16,5 +17,6 @@ app.use(store);
 app.use(VueSweetalert2);
 
 app.component('no-data', noDataFound);
+app.component('content-loader', ContentLoader);
 
 app.mount('#app');

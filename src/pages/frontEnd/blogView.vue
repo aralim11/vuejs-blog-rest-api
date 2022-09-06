@@ -1,6 +1,8 @@
 <template>
     <div class="row row-cols-1 row-cols-md-3 mb-3">
         <div class="col-md-9">
+            <blog-detail-loader v-if="blogDetails.length === 0"/>
+
             <article class="blog-post">
                 <h2 class="blog-post-title" >{{ blogDetails.title }}</h2>
                 <p class="blog-post-meta">{{ format_date(blogDetails.created_at) }} by <a href="#">{{ blogDetails.user_id }}</a> | <a href="#">{{ blogDetails.category_name }}</a></p>
@@ -9,6 +11,8 @@
         </div>
 
         <div class="col-md-3 text-center">
+            <similler-blog-loader v-if="simillerCats.length === 0"/>
+
             <blog-similler-cat v-for="simillerCat in simillerCats"
                 v-bind:key="simillerCat.id"
                 v-bind:id="simillerCat.id"
@@ -22,10 +26,14 @@
 <script>
     import BlogSimillerPost from './../../components/frontEnd/blogs/blogsSimillerCat.vue';
     import moment from 'moment';
+    import blogDetailLoader from './../../components/ui/blogDetailLoader.vue';
+    import simillerBlogLoader from './../../components/ui/simillerBlogLoader.vue';
 
     export default {
         components: {
             'blog-similler-cat': BlogSimillerPost,
+            'blog-detail-loader': blogDetailLoader,
+            'similler-blog-loader': simillerBlogLoader,
         },
 
         methods: {
