@@ -8,6 +8,7 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 import router from './router.js';
 import store from './store/index.js';
 
+
 import noDataFound from './components/noDataFound.vue';
 
 const app = createApp(App);
@@ -15,7 +16,6 @@ const app = createApp(App);
 app.use(router);
 app.use(store);
 app.use(VueSweetalert2);
-
 app.component('no-data', noDataFound);
 app.component('content-loader', ContentLoader);
 

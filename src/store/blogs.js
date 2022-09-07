@@ -36,10 +36,7 @@ export default {
             for(const key in respData['msg']) {
                 const blog = {
                     id: respData['msg'][key].id,
-                    user_id: respData['msg'][key].user_name.name,
-                    category_id: respData['msg'][key].category_name.cat_name,
                     title: respData['msg'][key].title,
-                    details: respData['msg'][key].details,
                     image: respData['msg'][key].image,
                 }
                 blogs.push(blog);
@@ -66,7 +63,6 @@ export default {
                 category_id: respData['msg'].category_id,
                 title: respData['msg'].title,
                 details: respData['msg'].details,
-                image: respData['msg'].image,
                 created_at: respData['msg'].created_at,
             }
             await context.dispatch('loadSimillerBlogs', {catId: respData['msg'].category_id, id: respData['msg'].id});
