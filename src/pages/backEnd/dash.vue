@@ -32,11 +32,11 @@
 </template>
 
 <style>
-.my-card
-{
-    position:absolute;
-    left:40%;
-    top:-20px;
-    border-radius:50%;
-}
+    .my-card
+    {
+        position:absolute;
+        left:40%;
+        top:-20px;
+        border-radius:50%;
+    }
 </style>
