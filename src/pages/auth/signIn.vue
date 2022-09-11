@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header">Sign In <span v-if="!formIsValid" class="error-msg">Please Enter Valid Email and Password!!</span></div>
                     <div class="card-body">
-                        <form @submit.prevent="submitForm">
+                        <form @submit.prevent="submitLoginForm">
                             <div class="row mb-3">
                                 <label for="email" class="col-md-4 col-form-label text-md-end">E-Mail Address</label>
                                 <div class="col-md-6">
@@ -67,12 +67,20 @@
         },
 
         methods: {
-            submitForm(){
+            async submitLoginForm(){
                 this.formIsValid = true;
                 if (this.email == '' || !this.email.includes('@') || this.password.length < 4) {
                     this.formIsValid = false;
                     return;
                 }
+
+                this.$swal.fire('Please Wait. Signup Processing.');
+                this.$swal.showLoading();
+                await this.$store.dispatch('Auth/login', {
+                    email: this.email,
+                    password: this.password,
+                });
+                this.$swal.close();
             }
         }
     }
