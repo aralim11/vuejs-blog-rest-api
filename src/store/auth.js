@@ -33,6 +33,8 @@ export default {
                 throw error;
             }
 
+            localStorage.setItem('token', respData.token);
+            localStorage.setItem('userId', respData.userId);
             context.commit('setUser', respData);
         },
 
@@ -55,14 +57,31 @@ export default {
                 throw error;
             }
 
+            localStorage.setItem('token', respData.token);
+            localStorage.setItem('userId', respData.userId);
             context.commit('setUser', respData);
         },
 
         logout(context){
+            localStorage.removeItem('token');
+            localStorage.removeItem('userId');
+
             context.commit('setUser', {
                 token: null,
                 userId: null,
             });
+        },
+
+        tryLogin(context){
+            const token = localStorage.getItem('token');
+            const userId = localStorage.getItem('userId');
+
+            if(token && userId){
+                context.commit('setUser', {
+                    token: token,
+                    userId: userId
+                })
+            }
         }
     },
 

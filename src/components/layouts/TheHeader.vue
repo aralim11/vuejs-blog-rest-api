@@ -10,7 +10,7 @@
                 <router-link v-if="isLoggedIn" class="me-3 py-2 text-dark text-decoration-none" to="/dash">Dashboard</router-link>
                 <router-link v-if="!isLoggedIn" class="me-3 py-2 text-dark text-decoration-none" to="/sign-up">Sign Up</router-link>
                 <router-link v-if="!isLoggedIn" class="py-2 text-dark text-decoration-none" to="/sign-in">Sign In</router-link>
-                <li v-if="isLoggedIn" class="py-2 text-dark text-decoration-none" @click="logout">Sign Out</li>
+                <router-link v-if="isLoggedIn" class="py-2 text-dark text-decoration-none" @click="logout" to="#">Sign Out</router-link>
             </nav>
         </div>
     </header>
@@ -27,6 +27,7 @@
         methods: {
             logout(){
                 this.$store.dispatch('Auth/logout');
+                this.$router.replace('/sign-in');
             }
         }
     }

@@ -16,6 +16,10 @@
       components: {
         'the-header': TheHeader,
         'the-footer': TheFooter,
+      },
+
+      created() {
+        this.$store.dispatch('Auth/tryLogin');
       }
   }
 </script>

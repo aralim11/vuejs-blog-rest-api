@@ -84,6 +84,7 @@
                     password: this.password,
                 })
                 this.$swal.close();
+                this.$router.replace('/dash');
             }
         }
     }
