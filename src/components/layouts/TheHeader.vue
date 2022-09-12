@@ -25,9 +25,16 @@
         },
 
         methods: {
-            logout(){
-                this.$store.dispatch('Auth/logout');
-                this.$router.replace('/sign-in');
+            async logout(){
+                this.$swal.fire('Please Wait. Logout Processing.');
+                this.$swal.showLoading();
+
+                await this.$store.dispatch('Auth/logout');
+                if (!this.isLoggedIn) {
+                    this.$router.replace('/sign-in');
+                }
+
+                this.$swal.close();
             }
         }
     }

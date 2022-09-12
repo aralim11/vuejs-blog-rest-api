@@ -32,10 +32,12 @@ export default {
                 const error = new Error(respData.message || "Failed To Register!!");
                 throw error;
             }
-
-            localStorage.setItem('token', respData.token);
-            localStorage.setItem('userId', respData.userId);
-            context.commit('setUser', respData);
+            
+            if (respData.status == 'success') {
+                localStorage.setItem('token', respData.token);
+                localStorage.setItem('userId', respData.userId);
+                context.commit('setUser', respData);
+            }
         },
 
         async registration(context, payload){
@@ -57,19 +59,37 @@ export default {
                 throw error;
             }
 
-            localStorage.setItem('token', respData.token);
-            localStorage.setItem('userId', respData.userId);
-            context.commit('setUser', respData);
+            if (respData.status == 'success') {
+                localStorage.setItem('token', respData.token);
+                localStorage.setItem('userId', respData.userId);
+                context.commit('setUser', respData);
+            }
         },
 
-        logout(context){
-            localStorage.removeItem('token');
-            localStorage.removeItem('userId');
-
-            context.commit('setUser', {
-                token: null,
-                userId: null,
+        async logout(context){
+            const resp = await fetch(`http://127.0.0.1:8000/api/logout`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem('token'),
+                },
             });
+
+            const respData = await resp.json();
+            if (!resp.ok) {
+                const error = new Error(respData.message || "Failed To Logout!!");
+                throw error;
+            }
+
+            if (respData.status == 'success') {
+                localStorage.removeItem('token');
+                localStorage.removeItem('userId');
+    
+                context.commit('setUser', {
+                    token: null,
+                    userId: null,
+                });
+            }
         },
 
         tryLogin(context){

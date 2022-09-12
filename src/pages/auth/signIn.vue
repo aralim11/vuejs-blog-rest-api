@@ -81,9 +81,15 @@
                     password: this.password,
                 });
                 this.$swal.close();
-                this.$router.replace('/dash');
+
+                const isAuthenticated = this.$store.getters['Auth/isAuthenticated'];
+                if (isAuthenticated) {
+                    this.$router.replace('/dash');
+                } else {
+                    this.formIsValid = false;
+                }
             }
-        }
+        },
     }
 </script>
 
