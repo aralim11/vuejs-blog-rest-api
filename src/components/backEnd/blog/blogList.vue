@@ -2,7 +2,8 @@
     <tr>
         <th scope="row">1</th>
         <td>{{ title }}</td>
-        <td>{{ category }}</td>
+        <td>{{ category_id }}</td>
+        <td>{{ status }}</td>
         <td>{{ created_at }}</td>
         <td>
             <button class="btn btn-info btn-sm" type="button"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>&nbsp;
@@ -13,6 +14,6 @@
 
 <script>
     export default {
-        props: ['id', 'title', 'category', 'created_at'],
+        props: ['id', 'title', 'category_id', 'created_at', 'status'],
     }
 </script>
