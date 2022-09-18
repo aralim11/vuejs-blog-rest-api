@@ -7,7 +7,7 @@
                 <div class="btn-group">
                     <router-link v-bind:to="blogDetailLink"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></router-link>
                 </div>
-                <small class="text-muted">9 mins</small>
+                <small class="text-muted">{{ created_at }}</small>
             </div>
         </div>
     </div>
@@ -15,7 +15,7 @@
 
 <script>
     export default {
-        props: ['id', 'title', 'image'],
+        props: ['id', 'title', 'image', 'created_at'],
         computed: {
             imageLink(){
                 return 'http://127.0.0.1:8000' + this.image;

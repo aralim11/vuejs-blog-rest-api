@@ -8,6 +8,8 @@
             <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
                 <router-link class="me-3 py-2 text-dark text-decoration-none" to="/">Home</router-link>
                 <router-link v-if="isLoggedIn" class="me-3 py-2 text-dark text-decoration-none" to="/dash">Dashboard</router-link>
+                <router-link v-if="isLoggedIn" class="me-3 py-2 text-dark text-decoration-none" to="/add-category">Category</router-link>
+                <router-link v-if="isLoggedIn" class="me-3 py-2 text-dark text-decoration-none" to="/add-blog">Blogs</router-link>
                 <router-link v-if="!isLoggedIn" class="me-3 py-2 text-dark text-decoration-none" to="/sign-up">Sign Up</router-link>
                 <router-link v-if="!isLoggedIn" class="py-2 text-dark text-decoration-none" to="/sign-in">Sign In</router-link>
                 <router-link v-if="isLoggedIn" class="py-2 text-dark text-decoration-none" @click="logout" to="#">Sign Out</router-link>

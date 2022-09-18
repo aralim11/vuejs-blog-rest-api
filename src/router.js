@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Blogs from './pages/frontEnd/blogs.vue';
 import BlogView from './pages/frontEnd/blogView.vue';
 import Dash from './pages/backEnd/dash.vue';
+import addCategory from './pages/backEnd/category.vue';
+import addBlog from './pages/backEnd/blog.vue';
 import SignIn from './pages/auth/signIn.vue';
 import SignUp from './pages/auth/signUp.vue';
 import notFound from './pages/notFound.vue';
@@ -15,6 +17,8 @@ const router = createRouter({
         {path: '/sign-in', component: SignIn, meta: {requiresUnAuth: true}},
         {path: '/sign-up', component: SignUp, meta: {requiresUnAuth: true}},
         {path: '/dash', component: Dash, meta: {requiresAuth: true}},
+        {path: '/add-category', component: addCategory, meta: {requiresAuth: true}},
+        {path: '/add-blog', component: addBlog, meta: {requiresAuth: true}},
         {path: '/:notFound(.*)', component: notFound},
     ]
 });
